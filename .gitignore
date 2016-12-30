@@ -2,3 +2,4 @@ target
 Cargo.lock
 application
 *.o
+src/c/inc/build_info.h
