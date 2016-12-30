@@ -1,0 +1,59 @@
+/*###ICF### Section handled by ICF editor, don't touch! ****/
+/*-Editor annotation file-*/
+/* IcfEditorFile="$TOOLKIT_DIR$\config\ide\IcfEditor\cortex_v1_0.xml" */
+/*-Specials-*/
+define symbol __ICFEDIT_intvec_start__ = 0x10000000;
+/*-Memory Regions-*/
+define symbol __ICFEDIT_region_ROM_start__ = 0x00000000;
+define symbol __ICFEDIT_region_ROM_end__   = 0x00010000;
+define symbol __ICFEDIT_region_RAM_start__ = 0x10000bc0;
+define symbol __ICFEDIT_region_RAM_end__   = 0x1006FFFF;
+/*-Sizes-*/
+define symbol __ICFEDIT_size_cstack__ = 0x200;
+define symbol __ICFEDIT_size_heap__   = 0x000;
+/**** End of ICF editor section. ###ICF###*/
+
+
+define memory mem with size = 4G;
+define region RAM_region   = mem:[from __ICFEDIT_region_RAM_start__   to __ICFEDIT_region_RAM_end__];
+
+define block CSTACK    with alignment = 8, size = __ICFEDIT_size_cstack__   { };
+define block HEAP      with alignment = 8, size = __ICFEDIT_size_heap__     { };
+
+initialize by copy { readwrite };
+do not initialize  { section .noinit };
+
+place at address mem:__ICFEDIT_intvec_start__ { section .intvec };
+
+place at start of RAM_region { section .start, section .patch, block RamTop with fixed order {readonly, section LOWEND }};
+place at end of RAM_region { block RamBottom with fixed order {section HIGHSTART, readwrite, section .init,
+                        block CSTACK, block HEAP}};
+
+define exported symbol __ram_start_table_start__ = 0x10000bc0;
+define exported symbol __rom_bss_start__ = 0x10000300;
+define exported symbol __rom_bss_end__ = 0x10000bc0;
+
+
+// rom symbols
+define exported symbol DiagPrintf = 0x0000f39d;
+define exported symbol SpicWaitBusyDoneRtl8195A = 0x00002ea5;
+define exported symbol SpicWaitWipDoneRtl8195A = 0x00002f55;
+define exported symbol SpicLoadInitParaFromClockRtl8195A = 0x00003081;
+define exported symbol VectorTableInitForOSRtl8195A = 0x00004019;						
+define exported symbol HalPinCtrlRtl8195A =0x00002b39;
+define exported symbol SpicInitCPUCLK = 0x00030c98 ;
+define exported symbol VectorTableInitRtl8195A = 0x00003de5;
+define exported symbol SpicCmpDataForCalibrationRtl8195A = 0x00003049;
+define exported symbol HalTimerInitRtl8195a = 0x0000ef3d;
+define exported symbol VectorIrqDisRtl8195A = 0x0000418d;
+define exported symbol VectorIrqRegisterRtl8195A = 0x00004029;
+define exported symbol SpicInitRtl8195A = 0x000030e5;
+define exported symbol HalCpuClkConfig = 0x00000341;
+define exported symbol HalDelayUs = 0x00000899;
+define exported symbol HalGetCpuClk = 0x00000355;
+define exported symbol _memcpy = 0x0000f465;
+
+
+define exported symbol ConfigDebugErr = 0x10000314;
+define exported symbol ConfigDebugInfo = 0x10000310;
+define exported symbol ConfigDebugWarn = 0x1000030c;
