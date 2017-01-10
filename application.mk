@@ -137,7 +137,7 @@ SRC_C += component/common/api/network/src/ping_test.c
 SRC_C += component/common/utilities/ssl_client.c
 SRC_C += component/common/utilities/ssl_client_ext.c
 SRC_C += component/common/utilities/tcptest.c
-SRC_C += component/common/application/uart_adapter/uart_adapter.c
+#SRC_C += component/common/application/uart_adapter/uart_adapter.c
 SRC_C += component/common/utilities/uart_ymodem.c
 SRC_C += component/common/utilities/update.c
 SRC_C += component/common/api/network/src/wlan_network.c
@@ -346,9 +346,9 @@ DRAM_C += component/common/network/ssl/ssl_ram_map/rom/rom_ssl_ram_map.c
 DRAM_C += component/common/network/ssl/ssl_ram_map/ssl_ram_map.c
 
 #SDRAM - wigadget
-DRAM_C += component/common/application/wigadget/cloud_link.c
-DRAM_C += component/common/application/wigadget/shtc1.c
-DRAM_C += component/common/application/wigadget/wigadget.c
+#DRAM_C += component/common/application/wigadget/cloud_link.c
+#DRAM_C += component/common/application/wigadget/shtc1.c
+#DRAM_C += component/common/application/wigadget/wigadget.c
 
 
 #utilities
@@ -369,7 +369,7 @@ SRC_C += component/common/file_system/fatfs/r0.10c/src/option/ccsbcs.c
 SRC_C += component/common/file_system/fatfs/disk_if/src/sdcard.c
 
 #utilities - xmodme update
-SRC_C += component/common/application/xmodem/uart_fw_update.c
+#SRC_C += component/common/application/xmodem/uart_fw_update.c
 #user
 SRC_C += src/c/src/main.c
 
