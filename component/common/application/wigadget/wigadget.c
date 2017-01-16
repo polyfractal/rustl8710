@@ -47,7 +47,7 @@ void encrypt_data_aes(unsigned char *plaint_text, unsigned char *enc_data);
 void decrypt_data_aes(unsigned char *enc_data, unsigned char *dec_data, int data_len);
 
 
-
+#ifndef _STDLIB_H_
 static unsigned int arc4random(void)
 {
 	unsigned int res = xTaskGetTickCount();
@@ -59,6 +59,7 @@ static unsigned int arc4random(void)
 	return seed;
 
 }
+#endif
 
 static char *iot_itoa(int value)
 {
